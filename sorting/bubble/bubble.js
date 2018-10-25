@@ -54,14 +54,13 @@ function draw() {
         }
   }
   if (++j >= colors.length) {
-      i++;
-      if (i >= colors.length) {
+      if (i++ >= colors.length) {
           ordered = true;
+          stroke(0);
           text("Finish!", 300, 300);
       }
       j = i + 1;
   }
-
 }
 
 function drawColors(colors) {

@@ -16,11 +16,11 @@ function draw() {
 
 	stroke(140, 10, 12);
 	let end2 = map(mins, 0, 60, -HALF_PI, HALF_PI + PI);
-	arc(width/2, width/2, 280, 280, -HALF_PI, end2);
+	arc(width/2, width/2, 260, 260, -HALF_PI, end2);
 
 	stroke(30, 80, 120);
 	let end3 = map(hrs % 12, 0, 12, -HALF_PI, HALF_PI + PI);
-	arc(width/2, width/2, 260, 260, -HALF_PI, end3);
+	arc(width/2, width/2, 280, 280, -HALF_PI, end3);
 
 	strokeWeight(1);
 	stroke(255);
