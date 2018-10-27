@@ -1,14 +1,18 @@
-let h = 400;
+let h = 225;
 let k = 400;
-let circMinRadius = 100;
+var circRadius;
+var sliderRWidth;
+var sliderRadius;
 
 function preload() {
-    sound = loadSound('assets/In My Mind.mp3');
+    sound = loadSound('assets/Sunday_Afternoon.mp3');
     // by True Lovers (https://www.truelovesband.com/)
+    sliderRWidth = createSlider(1, 30, 2, 0.5);
+    sliderRadius = createSlider(-150, 150, 100, 10);
 }
 
 function setup() {
-    var cnv = createCanvas(800, 800);
+    var cnv = createCanvas(450, 800);
     cnv.mouseClicked(togglePlay);
     fft = new p5.FFT(0.8, 512);
     sound.amp(0.8);
@@ -23,34 +27,35 @@ function draw() {
     fill(255, 255, 255);
 
     var newAngle;
-    var rombhusWidth = 2;
+    var rombhusWidth = sliderRWidth.value();
+    var circRadius = sliderRadius.value();
     for (var i = 0; i < spectrum.length; i++) {
         var angle = map(i, 0, spectrum.length, 0, TWO_PI);
 
-        var r1 = circMinRadius;
+        var r1 = circRadius;
         var x1 = h + (r1 * cos(angle));
         var y1 = k + (r1 * sin(angle));
 
-        var r2 = circMinRadius + 10;
+        var r2 = circRadius + 10;
         newAngle = angle - Math.atan((rombhusWidth / 2) / r2);
         var x2 = h + (r2 * cos(newAngle));
         var y2 = k + (r2 * sin(newAngle));
 
-        var r3 = circMinRadius + 10 + map(spectrum[i], 0, 255, 0, 200);
+        var r3 = circRadius + 10 + map(spectrum[i], 0, 255, 0, 100);
         newAngle = angle - Math.atan((rombhusWidth / 2) / r3);
         var x3 = h + (r3 * cos(newAngle));
         var y3 = k + (r3 * sin(newAngle));
 
-        var r4 = circMinRadius + 20 + map(spectrum[i], 0, 255, 0, 200);
+        var r4 = circRadius + 20 + map(spectrum[i], 0, 255, 0, 100);
         var x4 = h + (r4 * cos(angle));
         var y4 = k + (r4 * sin(angle));
 
-        var r5 = circMinRadius + 10 + map(spectrum[i], 0, 255, 0, 200);
+        var r5 = circRadius + 10 + map(spectrum[i], 0, 255, 0, 100);
         newAngle = angle + Math.atan((rombhusWidth / 2) / r5);
         var x5 = h + (r5 * cos(newAngle));
         var y5 = k + (r5 * sin(newAngle));
 
-        var r6 = circMinRadius + 10;
+        var r6 = circRadius + 10;
         newAngle = angle + Math.atan((rombhusWidth / 2) / r6);
         var x6 = h + (r6 * cos(newAngle));
         var y6 = k + (r6 * sin(newAngle));
